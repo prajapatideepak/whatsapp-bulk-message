@@ -10,10 +10,11 @@ const SESSION_FILE_PATH = "./session.json";
 const contact = [
   {
     name: "Deepak",
-    number: "9328027580",
+    number: "ok",
   },
 ];
 
+const msg = "Helloo , How Are You";
 const client = new Client({
   authStrategy: new LocalAuth(),
 });
@@ -28,10 +29,7 @@ client.on("ready", async () => {
 
   // client.sendMessage("916352201170@c.us", "Hello  Your Whatsapp is Hacked");
 
-  client.sendMessage(
-    `91${contact[0].number}@c.us`,
-    "Hello , aapki tution hamare area me bahot popular he hamne ek software banaya he jo aapki tution ko easily manage kar dena to free trial use karna chah "
-  );
+  client.sendMessage(`91${contact[0].number}@c.us`, msg);
 
   console.log(chat[0]);
 });
