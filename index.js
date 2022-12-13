@@ -2,19 +2,13 @@ const qrcode = require("qrcode-terminal");
 const fs = require("fs");
 
 const { Client, LocalAuth } = require("whatsapp-web.js");
+const { contact, msg } = require("./contact");
 
 // Path where the session data will be stored
 const SESSION_FILE_PATH = "./session.json";
 
 // Load the session data if it has been previously saved
-const contact = [
-  {
-    name: "Deepak",
-    number: "ok",
-  },
-];
 
-const msg = "Helloo , How Are You";
 const client = new Client({
   authStrategy: new LocalAuth(),
 });
@@ -28,8 +22,13 @@ client.on("ready", async () => {
   const chat = await client.getChats();
 
   // client.sendMessage("916352201170@c.us", "Hello  Your Whatsapp is Hacked");
-
-  client.sendMessage(`91${contact[0].number}@c.us`, msg);
+  try {
+    contact.map((m) => {
+      client.sendMessage(`91${m?.number}@c.us`, msg);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 
   console.log(chat[0]);
 });
